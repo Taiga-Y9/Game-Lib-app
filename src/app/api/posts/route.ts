@@ -10,7 +10,9 @@ export const GET = async (req: NextRequest) => {
         id: true,
         title: true,
         content: true,
+        coverImageURL: true, // ← 追加
         createdAt: true,
+        updatedAt: true, // ← 追加
         categories: {
           select: {
             category: {

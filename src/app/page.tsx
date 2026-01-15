@@ -5,6 +5,20 @@ import PostSummary from "@/app/_components/PostSummary";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
+// APIレスポンスの型定義（categoriesの構造が異なる）
+type PostApiResponse = {
+  id: string;
+  title: string;
+  content: string;
+  createdAt: string;
+  categories: {
+    category: {
+      id: string;
+      name: string;
+    };
+  }[];
+};
+
 const Page: React.FC = () => {
   const [posts, setPosts] = useState<Post[] | null>(null);
   const [fetchError, setFetchError] = useState<string | null>(null);
@@ -21,8 +35,20 @@ const Page: React.FC = () => {
         if (!response.ok) {
           throw new Error("データの取得に失敗しました");
         }
-        const data = await response.json();
-        setPosts(data as Post[]);
+        const data = (await response.json()) as PostApiResponse[];
+
+        // APIレスポンスをPost型に変換
+        const transformedPosts: Post[] = data.map((post) => ({
+          id: post.id,
+          title: post.title,
+          content: post.content,
+          coverImageURL: "", // APIレスポンスに含まれていない場合
+          createdAt: post.createdAt,
+          updatedAt: post.createdAt, // APIレスポンスに含まれていない場合
+          categories: post.categories.map((cat) => cat.category),
+        }));
+
+        setPosts(transformedPosts);
       } catch (e) {
         setFetchError(
           e instanceof Error ? e.message : "予期せぬエラーが発生しました",
@@ -33,7 +59,7 @@ const Page: React.FC = () => {
   }, []);
 
   if (fetchError) {
-    return <div>{fetchError}</div>;
+    return <div className="text-red-500">{fetchError}</div>;
   }
 
   if (!posts) {
