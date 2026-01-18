@@ -1,21 +1,39 @@
 "use client";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { twMerge } from "tailwind-merge";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
 type Category = {
   id: string;
   name: string;
 };
 
+type PostApiResponse = {
+  id: string;
+  title: string;
+  content: string;
+  coverImageURL: string;
+  createdAt: string;
+  updatedAt: string;
+  categories: {
+    category: {
+      id: string;
+      name: string;
+    };
+  }[];
+};
+
 const Page: React.FC = () => {
   const router = useRouter();
+  const { id } = useParams() as { id: string };
+
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fetchErrorMsg, setFetchErrorMsg] = useState<string | null>(null);
   const [categories, setCategories] = useState<Category[] | null>(null);
+  const [post, setPost] = useState<PostApiResponse | null>(null);
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -24,7 +42,6 @@ const Page: React.FC = () => {
 
   const fetchCategories = async () => {
     try {
-      setIsLoading(true);
       const requestUrl = "/api/categories";
       const res = await fetch(requestUrl, {
         method: "GET",
@@ -32,7 +49,6 @@ const Page: React.FC = () => {
       });
 
       if (!res.ok) {
-        setCategories(null);
         throw new Error(`${res.status}: ${res.statusText}`);
       }
 
@@ -45,14 +61,45 @@ const Page: React.FC = () => {
           : `予期せぬエラーが発生しました ${error}`;
       console.error(errorMsg);
       setFetchErrorMsg(errorMsg);
-    } finally {
-      setIsLoading(false);
+    }
+  };
+
+  const fetchPost = async () => {
+    try {
+      const requestUrl = `/api/posts/${id}`;
+      const res = await fetch(requestUrl, {
+        method: "GET",
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        throw new Error(`${res.status}: ${res.statusText}`);
+      }
+
+      const apiResBody = (await res.json()) as PostApiResponse;
+      setPost(apiResBody);
+      setTitle(apiResBody.title);
+      setContent(apiResBody.content);
+      setCoverImageURL(apiResBody.coverImageURL);
+      setSelectedCategoryIds(apiResBody.categories.map((c) => c.category.id));
+    } catch (error) {
+      const errorMsg =
+        error instanceof Error
+          ? `投稿記事のフェッチに失敗しました: ${error.message}`
+          : `予期せぬエラーが発生しました ${error}`;
+      console.error(errorMsg);
+      setFetchErrorMsg(errorMsg);
     }
   };
 
   useEffect(() => {
-    fetchCategories();
-  }, []);
+    const fetchData = async () => {
+      setIsLoading(true);
+      await Promise.all([fetchCategories(), fetchPost()]);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [id]);
 
   const handleCategoryToggle = (categoryId: string) => {
     setSelectedCategoryIds((prev) =>
@@ -74,8 +121,8 @@ const Page: React.FC = () => {
         categoryIds: selectedCategoryIds,
       });
 
-      const res = await fetch("/api/admin/posts", {
-        method: "POST",
+      const res = await fetch(`/api/admin/posts/${id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -86,12 +133,42 @@ const Page: React.FC = () => {
         throw new Error(`${res.status}: ${res.statusText}`);
       }
 
-      alert("投稿記事を作成しました");
+      alert("投稿記事を更新しました");
       router.push("/admin/posts");
     } catch (error) {
       const errorMsg =
         error instanceof Error
-          ? `投稿記事の作成に失敗しました: ${error.message}`
+          ? `投稿記事の更新に失敗しました: ${error.message}`
+          : `予期せぬエラーが発生しました`;
+      console.error(errorMsg);
+      alert(errorMsg);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!confirm(`「${post?.title}」を削除しますか？`)) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch(`/api/admin/posts/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        throw new Error(`${res.status}: ${res.statusText}`);
+      }
+
+      alert("削除しました");
+      router.push("/admin/posts");
+    } catch (error) {
+      const errorMsg =
+        error instanceof Error
+          ? `削除に失敗しました: ${error.message}`
           : `予期せぬエラーが発生しました`;
       console.error(errorMsg);
       alert(errorMsg);
@@ -109,13 +186,13 @@ const Page: React.FC = () => {
     );
   }
 
-  if (!categories) {
+  if (!categories || !post) {
     return <div className="text-red-500">{fetchErrorMsg}</div>;
   }
 
   return (
     <main>
-      <div className="mb-4 text-2xl font-bold">投稿記事の新規作成</div>
+      <div className="mb-4 text-2xl font-bold">投稿記事の編集</div>
 
       {isSubmitting && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
@@ -208,28 +285,43 @@ const Page: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex justify-end space-x-2">
+        <div className="flex justify-between">
           <button
             type="button"
-            onClick={() => router.back()}
-            className={twMerge(
-              "rounded-md px-5 py-1 font-bold",
-              "bg-gray-300 text-gray-700 hover:bg-gray-400",
-            )}
-          >
-            キャンセル
-          </button>
-          <button
-            type="submit"
+            onClick={handleDelete}
             disabled={isSubmitting}
             className={twMerge(
               "rounded-md px-5 py-1 font-bold",
-              "bg-indigo-500 text-white hover:bg-indigo-600",
+              "bg-red-500 text-white hover:bg-red-600",
               isSubmitting && "opacity-50",
             )}
           >
-            投稿を作成
+            <FontAwesomeIcon icon={faTrash} className="mr-1" />
+            削除
           </button>
+          <div className="flex space-x-2">
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className={twMerge(
+                "rounded-md px-5 py-1 font-bold",
+                "bg-gray-300 text-gray-700 hover:bg-gray-400",
+              )}
+            >
+              キャンセル
+            </button>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={twMerge(
+                "rounded-md px-5 py-1 font-bold",
+                "bg-indigo-500 text-white hover:bg-indigo-600",
+                isSubmitting && "opacity-50",
+              )}
+            >
+              更新
+            </button>
+          </div>
         </div>
       </form>
     </main>

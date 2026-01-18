@@ -18,7 +18,7 @@ const Header: React.FC = () => {
           <div>
             <Link href="/">
               <FontAwesomeIcon icon={faFish} className="mr-1" />
-              XXXのブログ
+              YTのブログ
             </Link>
           </div>
           <div>

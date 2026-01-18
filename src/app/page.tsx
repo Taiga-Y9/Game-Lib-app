@@ -5,12 +5,13 @@ import PostSummary from "@/app/_components/PostSummary";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-// APIレスポンスの型定義（categoriesの構造が異なる）
 type PostApiResponse = {
   id: string;
   title: string;
   content: string;
+  coverImageURL: string;
   createdAt: string;
+  updatedAt: string;
   categories: {
     category: {
       id: string;
@@ -26,7 +27,6 @@ const Page: React.FC = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        // 自作APIから記事データを取得
         const requestUrl = "/api/posts";
         const response = await fetch(requestUrl, {
           method: "GET",
@@ -37,14 +37,13 @@ const Page: React.FC = () => {
         }
         const data = (await response.json()) as PostApiResponse[];
 
-        // APIレスポンスをPost型に変換
         const transformedPosts: Post[] = data.map((post) => ({
           id: post.id,
           title: post.title,
           content: post.content,
-          coverImageURL: "", // APIレスポンスに含まれていない場合
+          coverImageURL: post.coverImageURL,
           createdAt: post.createdAt,
-          updatedAt: post.createdAt, // APIレスポンスに含まれていない場合
+          updatedAt: post.updatedAt,
           categories: post.categories.map((cat) => cat.category),
         }));
 
