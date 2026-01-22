@@ -20,7 +20,7 @@ const PostSummary: React.FC<Props> = (props) => {
       <div className="flex items-center justify-between">
         <div>{dayjs(post.createdAt).format(dtFmt)}</div>
         <div className="flex space-x-1.5">
-          {post.categories.map((category) => (
+          {post.categories?.map((category) => (
             <div
               key={category.id}
               className={twMerge(
