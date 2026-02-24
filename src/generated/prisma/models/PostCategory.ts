@@ -28,24 +28,18 @@ export type PostCategoryMinAggregateOutputType = {
   id: string | null
   postId: string | null
   categoryId: string | null
-  createdAt: Date | null
-  updatedAt: Date | null
 }
 
 export type PostCategoryMaxAggregateOutputType = {
   id: string | null
   postId: string | null
   categoryId: string | null
-  createdAt: Date | null
-  updatedAt: Date | null
 }
 
 export type PostCategoryCountAggregateOutputType = {
   id: number
   postId: number
   categoryId: number
-  createdAt: number
-  updatedAt: number
   _all: number
 }
 
@@ -54,24 +48,18 @@ export type PostCategoryMinAggregateInputType = {
   id?: true
   postId?: true
   categoryId?: true
-  createdAt?: true
-  updatedAt?: true
 }
 
 export type PostCategoryMaxAggregateInputType = {
   id?: true
   postId?: true
   categoryId?: true
-  createdAt?: true
-  updatedAt?: true
 }
 
 export type PostCategoryCountAggregateInputType = {
   id?: true
   postId?: true
   categoryId?: true
-  createdAt?: true
-  updatedAt?: true
   _all?: true
 }
 
@@ -151,8 +139,6 @@ export type PostCategoryGroupByOutputType = {
   id: string
   postId: string
   categoryId: string
-  createdAt: Date
-  updatedAt: Date
   _count: PostCategoryCountAggregateOutputType | null
   _min: PostCategoryMinAggregateOutputType | null
   _max: PostCategoryMaxAggregateOutputType | null
@@ -180,8 +166,6 @@ export type PostCategoryWhereInput = {
   id?: Prisma.StringFilter<"PostCategory"> | string
   postId?: Prisma.StringFilter<"PostCategory"> | string
   categoryId?: Prisma.StringFilter<"PostCategory"> | string
-  createdAt?: Prisma.DateTimeFilter<"PostCategory"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"PostCategory"> | Date | string
   category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
   post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>
 }
@@ -190,31 +174,26 @@ export type PostCategoryOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   category?: Prisma.CategoryOrderByWithRelationInput
   post?: Prisma.PostOrderByWithRelationInput
 }
 
 export type PostCategoryWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  postId_categoryId?: Prisma.PostCategoryPostIdCategoryIdCompoundUniqueInput
   AND?: Prisma.PostCategoryWhereInput | Prisma.PostCategoryWhereInput[]
   OR?: Prisma.PostCategoryWhereInput[]
   NOT?: Prisma.PostCategoryWhereInput | Prisma.PostCategoryWhereInput[]
   postId?: Prisma.StringFilter<"PostCategory"> | string
   categoryId?: Prisma.StringFilter<"PostCategory"> | string
-  createdAt?: Prisma.DateTimeFilter<"PostCategory"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"PostCategory"> | Date | string
   category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
   post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>
-}, "id">
+}, "id" | "postId_categoryId">
 
 export type PostCategoryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   _count?: Prisma.PostCategoryCountOrderByAggregateInput
   _max?: Prisma.PostCategoryMaxOrderByAggregateInput
   _min?: Prisma.PostCategoryMinOrderByAggregateInput
@@ -227,14 +206,10 @@ export type PostCategoryScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"PostCategory"> | string
   postId?: Prisma.StringWithAggregatesFilter<"PostCategory"> | string
   categoryId?: Prisma.StringWithAggregatesFilter<"PostCategory"> | string
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"PostCategory"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PostCategory"> | Date | string
 }
 
 export type PostCategoryCreateInput = {
   id?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
   category: Prisma.CategoryCreateNestedOneWithoutPostsInput
   post: Prisma.PostCreateNestedOneWithoutCategoriesInput
 }
@@ -243,14 +218,10 @@ export type PostCategoryUncheckedCreateInput = {
   id?: string
   postId: string
   categoryId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type PostCategoryUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   category?: Prisma.CategoryUpdateOneRequiredWithoutPostsNestedInput
   post?: Prisma.PostUpdateOneRequiredWithoutCategoriesNestedInput
 }
@@ -259,30 +230,22 @@ export type PostCategoryUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   postId?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostCategoryCreateManyInput = {
   id?: string
   postId: string
   categoryId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type PostCategoryUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostCategoryUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   postId?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostCategoryListRelationFilter = {
@@ -295,28 +258,27 @@ export type PostCategoryOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type PostCategoryPostIdCategoryIdCompoundUniqueInput = {
+  postId: string
+  categoryId: string
+}
+
 export type PostCategoryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
 }
 
 export type PostCategoryMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
 }
 
 export type PostCategoryMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
 }
 
 export type PostCategoryCreateNestedManyWithoutPostInput = {
@@ -405,16 +367,12 @@ export type PostCategoryUncheckedUpdateManyWithoutCategoryNestedInput = {
 
 export type PostCategoryCreateWithoutPostInput = {
   id?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
   category: Prisma.CategoryCreateNestedOneWithoutPostsInput
 }
 
 export type PostCategoryUncheckedCreateWithoutPostInput = {
   id?: string
   categoryId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type PostCategoryCreateOrConnectWithoutPostInput = {
@@ -450,22 +408,16 @@ export type PostCategoryScalarWhereInput = {
   id?: Prisma.StringFilter<"PostCategory"> | string
   postId?: Prisma.StringFilter<"PostCategory"> | string
   categoryId?: Prisma.StringFilter<"PostCategory"> | string
-  createdAt?: Prisma.DateTimeFilter<"PostCategory"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"PostCategory"> | Date | string
 }
 
 export type PostCategoryCreateWithoutCategoryInput = {
   id?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
   post: Prisma.PostCreateNestedOneWithoutCategoriesInput
 }
 
 export type PostCategoryUncheckedCreateWithoutCategoryInput = {
   id?: string
   postId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type PostCategoryCreateOrConnectWithoutCategoryInput = {
@@ -497,57 +449,41 @@ export type PostCategoryUpdateManyWithWhereWithoutCategoryInput = {
 export type PostCategoryCreateManyPostInput = {
   id?: string
   categoryId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type PostCategoryUpdateWithoutPostInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   category?: Prisma.CategoryUpdateOneRequiredWithoutPostsNestedInput
 }
 
 export type PostCategoryUncheckedUpdateWithoutPostInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostCategoryUncheckedUpdateManyWithoutPostInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   categoryId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostCategoryCreateManyCategoryInput = {
   id?: string
   postId: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type PostCategoryUpdateWithoutCategoryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   post?: Prisma.PostUpdateOneRequiredWithoutCategoriesNestedInput
 }
 
 export type PostCategoryUncheckedUpdateWithoutCategoryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   postId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PostCategoryUncheckedUpdateManyWithoutCategoryInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   postId?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -556,8 +492,6 @@ export type PostCategorySelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   postId?: boolean
   categoryId?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postCategory"]>
@@ -566,8 +500,6 @@ export type PostCategorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   postId?: boolean
   categoryId?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postCategory"]>
@@ -576,8 +508,6 @@ export type PostCategorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   postId?: boolean
   categoryId?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["postCategory"]>
@@ -586,11 +516,9 @@ export type PostCategorySelectScalar = {
   id?: boolean
   postId?: boolean
   categoryId?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }
 
-export type PostCategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "postId" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["postCategory"]>
+export type PostCategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "postId" | "categoryId", ExtArgs["result"]["postCategory"]>
 export type PostCategoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   post?: boolean | Prisma.PostDefaultArgs<ExtArgs>
@@ -614,8 +542,6 @@ export type $PostCategoryPayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: string
     postId: string
     categoryId: string
-    createdAt: Date
-    updatedAt: Date
   }, ExtArgs["result"]["postCategory"]>
   composites: {}
 }
@@ -1044,8 +970,6 @@ export interface PostCategoryFieldRefs {
   readonly id: Prisma.FieldRef<"PostCategory", 'String'>
   readonly postId: Prisma.FieldRef<"PostCategory", 'String'>
   readonly categoryId: Prisma.FieldRef<"PostCategory", 'String'>
-  readonly createdAt: Prisma.FieldRef<"PostCategory", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"PostCategory", 'DateTime'>
 }
     
 

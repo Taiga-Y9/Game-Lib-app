@@ -78,11 +78,11 @@ export const PostScalarFieldEnum = {
   title: 'title',
   content: 'content',
   coverImageURL: 'coverImageURL',
-  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   playTime: 'playTime',
   rating: 'rating',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  status: 'status'
 } as const
 
 export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
@@ -101,9 +101,7 @@ export type PlayLogScalarFieldEnum = (typeof PlayLogScalarFieldEnum)[keyof typeo
 
 export const CategoryScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  name: 'name'
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
@@ -112,9 +110,7 @@ export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typ
 export const PostCategoryScalarFieldEnum = {
   id: 'id',
   postId: 'postId',
-  categoryId: 'categoryId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  categoryId: 'categoryId'
 } as const
 
 export type PostCategoryScalarFieldEnum = (typeof PostCategoryScalarFieldEnum)[keyof typeof PostCategoryScalarFieldEnum]

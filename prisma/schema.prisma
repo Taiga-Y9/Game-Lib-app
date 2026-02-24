@@ -7,29 +7,20 @@ datasource db {
   provider = "postgresql"
 }
 
-// ゲームステータス
-enum GameStatus {
-  UNPLAYED   // 積みゲー
-  PLAYING    // プレイ中
-  COMPLETED  // クリア済み
-  PERFECT    // 100%達成
-}
-
 model Post {
   id            String         @id @default(uuid())
   title         String
   content       String
   coverImageURL String
-  status        GameStatus     @default(UNPLAYED)
-  playTime      Int            @default(0)   // 分単位で保存
-  rating        Int            @default(0)   // 0〜5
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
-  categories    PostCategory[]
+  playTime      Int            @default(0)
+  rating        Int            @default(0)
+  status        GameStatus     @default(UNPLAYED)
   playLogs      PlayLog[]
+  categories    PostCategory[]
 }
 
-// プレイ日記（Phase2で追加）
 model PlayLog {
   id        String   @id @default(uuid())
   postId    String
@@ -40,19 +31,24 @@ model PlayLog {
 }
 
 model Category {
-  id        String         @id @default(uuid())
-  name      String         @unique
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
-  posts     PostCategory[]
+  id    String         @id @default(uuid())
+  name  String         @unique
+  posts PostCategory[]
 }
 
 model PostCategory {
   id         String   @id @default(uuid())
   postId     String
   categoryId String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
   category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, categoryId])
+}
+
+enum GameStatus {
+  UNPLAYED
+  PLAYING
+  COMPLETED
+  PERFECT
 }

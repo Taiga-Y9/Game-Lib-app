@@ -9,6 +9,9 @@ export const GET = async (req: NextRequest) => {
         title: true,
         content: true,
         coverImageURL: true,
+        status: true,
+        playTime: true,
+        rating: true,
         createdAt: true,
         updatedAt: true,
         categories: {

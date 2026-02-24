@@ -29,11 +29,15 @@ export type StringFilter<$PrismaModel = never> = {
   not?: Prisma.NestedStringFilter<$PrismaModel> | string
 }
 
-export type EnumGameStatusFilter<$PrismaModel = never> = {
-  equals?: $Enums.GameStatus | Prisma.EnumGameStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
-  notIn?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumGameStatusFilter<$PrismaModel> | $Enums.GameStatus
+export type DateTimeFilter<$PrismaModel = never> = {
+  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
+  notIn?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
+  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDateTimeFilter<$PrismaModel> | Date | string
 }
 
 export type IntFilter<$PrismaModel = never> = {
@@ -47,15 +51,11 @@ export type IntFilter<$PrismaModel = never> = {
   not?: Prisma.NestedIntFilter<$PrismaModel> | number
 }
 
-export type DateTimeFilter<$PrismaModel = never> = {
-  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
-  notIn?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
-  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedDateTimeFilter<$PrismaModel> | Date | string
+export type EnumGameStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.GameStatus | Prisma.EnumGameStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGameStatusFilter<$PrismaModel> | $Enums.GameStatus
 }
 
 export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -76,14 +76,18 @@ export type StringWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedStringFilter<$PrismaModel>
 }
 
-export type EnumGameStatusWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.GameStatus | Prisma.EnumGameStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
-  notIn?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumGameStatusWithAggregatesFilter<$PrismaModel> | $Enums.GameStatus
+export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
+  notIn?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
+  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
   _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumGameStatusFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumGameStatusFilter<$PrismaModel>
+  _min?: Prisma.NestedDateTimeFilter<$PrismaModel>
+  _max?: Prisma.NestedDateTimeFilter<$PrismaModel>
 }
 
 export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -102,18 +106,14 @@ export type IntWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedIntFilter<$PrismaModel>
 }
 
-export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
-  notIn?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
-  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+export type EnumGameStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GameStatus | Prisma.EnumGameStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGameStatusWithAggregatesFilter<$PrismaModel> | $Enums.GameStatus
   _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedDateTimeFilter<$PrismaModel>
-  _max?: Prisma.NestedDateTimeFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGameStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGameStatusFilter<$PrismaModel>
 }
 
 export type NestedStringFilter<$PrismaModel = never> = {
@@ -130,11 +130,15 @@ export type NestedStringFilter<$PrismaModel = never> = {
   not?: Prisma.NestedStringFilter<$PrismaModel> | string
 }
 
-export type NestedEnumGameStatusFilter<$PrismaModel = never> = {
-  equals?: $Enums.GameStatus | Prisma.EnumGameStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
-  notIn?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumGameStatusFilter<$PrismaModel> | $Enums.GameStatus
+export type NestedDateTimeFilter<$PrismaModel = never> = {
+  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
+  notIn?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
+  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDateTimeFilter<$PrismaModel> | Date | string
 }
 
 export type NestedIntFilter<$PrismaModel = never> = {
@@ -148,15 +152,11 @@ export type NestedIntFilter<$PrismaModel = never> = {
   not?: Prisma.NestedIntFilter<$PrismaModel> | number
 }
 
-export type NestedDateTimeFilter<$PrismaModel = never> = {
-  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
-  notIn?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
-  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedDateTimeFilter<$PrismaModel> | Date | string
+export type NestedEnumGameStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.GameStatus | Prisma.EnumGameStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGameStatusFilter<$PrismaModel> | $Enums.GameStatus
 }
 
 export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -176,14 +176,18 @@ export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedStringFilter<$PrismaModel>
 }
 
-export type NestedEnumGameStatusWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.GameStatus | Prisma.EnumGameStatusFieldRefInput<$PrismaModel>
-  in?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
-  notIn?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumGameStatusWithAggregatesFilter<$PrismaModel> | $Enums.GameStatus
+export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
+  notIn?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
+  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
   _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumGameStatusFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumGameStatusFilter<$PrismaModel>
+  _min?: Prisma.NestedDateTimeFilter<$PrismaModel>
+  _max?: Prisma.NestedDateTimeFilter<$PrismaModel>
 }
 
 export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -213,18 +217,14 @@ export type NestedFloatFilter<$PrismaModel = never> = {
   not?: Prisma.NestedFloatFilter<$PrismaModel> | number
 }
 
-export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
-  notIn?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
-  lt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  lte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+export type NestedEnumGameStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GameStatus | Prisma.EnumGameStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GameStatus[] | Prisma.ListEnumGameStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGameStatusWithAggregatesFilter<$PrismaModel> | $Enums.GameStatus
   _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedDateTimeFilter<$PrismaModel>
-  _max?: Prisma.NestedDateTimeFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGameStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGameStatusFilter<$PrismaModel>
 }
 
 
