@@ -22,43 +22,43 @@
 
 ### トップページ（ゲーム一覧グリッド）
 
-![トップページ]<img width="942" height="909" alt="Image" src="https://github.com/user-attachments/assets/72e294cc-a141-4c39-bc9a-26ad17cf1a08" />
+<img width="942" height="909" alt="Image" src="https://github.com/user-attachments/assets/72e294cc-a141-4c39-bc9a-26ad17cf1a08" />
 
 > ゲームカードがグリッド表示されます。ステータスタブで絞り込み、検索・カテゴリフィルターで素早く目的のゲームを探せます。
 
 ### 統計ダッシュボード
 
-![統計ダッシュボード]<img width="941" height="345" alt="Image" src="https://github.com/user-attachments/assets/2ea3000d-1af6-42d2-bf87-7f3d02cccdc2" />
+<img width="941" height="345" alt="Image" src="https://github.com/user-attachments/assets/2ea3000d-1af6-42d2-bf87-7f3d02cccdc2" />
 
 > 総ゲーム数・プレイ中・積みゲー・総プレイ時間がひと目でわかります。積みゲーが5本を超えると警告バナーが表示されます 🚨
 
 ### ゲーム詳細ページ
 
-![ゲーム詳細]<img width="939" height="830" alt="Image" src="https://github.com/user-attachments/assets/6e9b9436-8f56-4d3e-9080-709a66e5e48f" />
+<img width="939" height="830" alt="Image" src="https://github.com/user-attachments/assets/6e9b9436-8f56-4d3e-9080-709a66e5e48f" />
 
 > カバー画像、ステータス、プレイ時間、星評価、カテゴリタグ、メモ・感想を表示します。ログイン中はプレイ日記の投稿フォームも表示されます。
 
 ### ゲーム追加・編集フォーム（管理者機能）
 
-![ゲーム追加フォーム]<img width="942" height="908" alt="Image" src="https://github.com/user-attachments/assets/52c48565-9d48-48ef-9e56-80c16a69e942" />
+<img width="942" height="908" alt="Image" src="https://github.com/user-attachments/assets/52c48565-9d48-48ef-9e56-80c16a69e942" />
 
 > ゲームタイトル、ステータス（ボタン選択）、星評価、プレイ時間（時間・分）、カバー画像URL、カテゴリ（トグルボタン）、メモをまとめて入力できます。
 
 ### ゲーム管理一覧（管理者機能）
 
-![管理一覧]<img width="940" height="907" alt="Image" src="https://github.com/user-attachments/assets/51b8b96d-c5e2-4898-9a29-157e8e423f15" />
+<img width="940" height="907" alt="Image" src="https://github.com/user-attachments/assets/51b8b96d-c5e2-4898-9a29-157e8e423f15" />
 
 > タイトル・ステータス・カテゴリで絞り込み検索できる管理画面です。直接削除も可能。
 
 ### カテゴリ管理（管理者機能）
 
-![カテゴリ管理]<img width="942" height="910" alt="Image" src="https://github.com/user-attachments/assets/8d34daed-717b-49eb-bacf-dc2eb626d9a8" />
+<img width="942" height="910" alt="Image" src="https://github.com/user-attachments/assets/8d34daed-717b-49eb-bacf-dc2eb626d9a8" />
 
 > プラットフォームやジャンルなどのカテゴリを追加・編集・削除できます。各カテゴリに紐づくゲーム数も表示されます。
 
 ### ログイン画面
 
-![ログイン]<img width="961" height="910" alt="Image" src="https://github.com/user-attachments/assets/93e14b59-e18d-4941-af1f-54d792ce8dd1" />
+<img width="961" height="910" alt="Image" src="https://github.com/user-attachments/assets/93e14b59-e18d-4941-af1f-54d792ce8dd1" />
 
 > 管理者のみ操作できるよう、Supabase Auth によるメール＋パスワード認証を実装しています。
 
